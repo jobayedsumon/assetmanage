@@ -29,6 +29,8 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('pages.table_list');
 	})->name('table');
 
+    Route::resource('department', \App\Http\Controllers\DepartmentController::class);
+
 	Route::get('typography', function () {
 		return view('pages.typography');
 	})->name('typography');
