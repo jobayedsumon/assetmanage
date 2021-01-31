@@ -1,25 +1,25 @@
-@extends('layouts.app', ['activePage' => 'department', 'titlePage' => __('Department')])
+@extends('layouts.app', ['activePage' => 'category', 'titlePage' => __('Category')])
 
 @section('content')
 <div class="content">
   <div class="container-fluid">
       <div class="row">
           <div class="col-md-7">
-              <form method="post" action="{{ route('department.store') }}" autocomplete="on" class="form-horizontal">
+              <form method="post" action="{{ route('category.store') }}" autocomplete="on" class="form-horizontal">
                   @csrf
 
                   <div class="card ">
                       <div class="card-header card-header-primary">
-                          <h4 class="card-title">{{ __('Create Department') }}</h4>
-                          <p class="card-category">{{ __('Create new department') }}</p>
+                          <h4 class="card-title">{{ __('Create Category') }}</h4>
+                          <p class="card-category">{{ __('Create new category') }}</p>
                       </div>
                       <div class="card-body ">
 
                           <div class="row">
-                              <label class="col-sm-2 col-form-label">{{ __('Department Name') }}</label>
+                              <label class="col-sm-2 col-form-label">{{ __('Category Name') }}</label>
                               <div class="col-sm-7">
                                   <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                      <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" placeholder="{{ __('Department Name') }}" value="{{ old('name') }}" required="true" aria-required="true"/>
+                                      <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" placeholder="{{ __('Category Name') }}" value="{{ old('name') }}" required="true" aria-required="true"/>
                                       @if ($errors->has('name'))
                                           <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('name') }}</span>
                                       @endif
@@ -53,8 +53,8 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-primary">
-            <h4 class="card-title ">Department List</h4>
-            <p class="card-category"> All the available departments</p>
+            <h4 class="card-title ">Category List</h4>
+            <p class="card-category"> All the available categories</p>
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -64,10 +64,7 @@
                     S/L
                   </th>
                   <th>
-                    Department Name
-                  </th>
-                  <th>
-                      Total Category
+                    Category Name
                   </th>
                   <th>
                     Total Items
@@ -81,13 +78,13 @@
                   </th>
                 </thead>
                 <tbody>
-                @forelse($departments as $department)
+                @forelse($categories as $category)
                   <tr>
                     <td>
                       {{ $loop->index + 1 }}
                     </td>
                     <td>
-                        {{ $department->name }}
+                        {{ $category->name }}
                     </td>
                     <td>
                       1
@@ -100,7 +97,7 @@
                     </td>
                       <td>
                           <button class="btn btn-round btn-success" data-toggle="modal" data-target="#editModal"
-                                  data-id="{{ $department->id }}" data-name="{{ $department->name }}">
+                                  data-id="{{ $category->id }}" data-name="{{ $category->name }}">
                               <i class="material-icons">edit</i>
                           </button>
                           <button class="btn btn-round btn-danger" href=""><i class="material-icons">delete</i></button>
@@ -132,7 +129,7 @@
 
                         <div class="card ">
                             <div class="card-header card-header-primary flex justify-between mx-3">
-                                <h4 class="card-title">{{ __('Edit Department') }}</h4>
+                                <h4 class="card-title">{{ __('Edit Category') }}</h4>
 
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                                     <i class="material-icons">clear</i>
@@ -141,10 +138,10 @@
                             <div class="card-body ">
 
                                 <div class="row">
-                                    <label class="col-sm-2 col-form-label">{{ __('Department Name') }}</label>
+                                    <label class="col-sm-2 col-form-label">{{ __('Category Name') }}</label>
                                     <div class="col-sm-7">
                                         <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                            <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="modal-name" type="text" placeholder="{{ __('Department Name') }}" value="{{ old('name') }}" required="true" aria-required="true"/>
+                                            <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="modal-name" type="text" placeholder="{{ __('Category Name') }}" value="{{ old('name') }}" required="true" aria-required="true"/>
                                             @if ($errors->has('name'))
                                                 <span id="name-error" class="error text-danger" for="input-name">{{ $errors->first('name') }}</span>
                                             @endif
@@ -178,7 +175,7 @@
             var name = button.data('name') // Extract info from data-* attributes
             var modal = $(this)
             modal.find('#modal-name').val(name)
-            modal.find('#editForm').attr('action', '/department/'+id)
+            modal.find('#editForm').attr('action', '/category/'+id)
         })
     </script>
 @endpush

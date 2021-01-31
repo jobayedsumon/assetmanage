@@ -30,6 +30,23 @@ Route::group(['middleware' => 'auth'], function () {
 	})->name('table');
 
     Route::resource('department', \App\Http\Controllers\DepartmentController::class);
+    Route::resource('branch', \App\Http\Controllers\BranchController::class);
+    Route::resource('category', \App\Http\Controllers\CategoryController::class);
+    Route::resource('items', \App\Http\Controllers\ItemController::class);
+    Route::resource('employee', \App\Http\Controllers\EmployeeController::class);
+    Route::resource('asset-assignment', \App\Http\Controllers\AssetAssignmentController::class);
+    Route::post('/get-department-employee', '\App\Http\Controllers\AssetAssignmentController@get_department_employee');
+    Route::post('/get-category-item', '\App\Http\Controllers\AssetAssignmentController@get_category_item');
+
+    Route::get('item-image/{image}', function($image) {
+        $file = storage_path('app/item-image/'.$image);
+        return response()->file($file);
+    })->name('item-image');
+
+    Route::get('purchase-document/{document}', function($document) {
+        $file = storage_path('app/purchase-document/'.$document);
+        return response()->file($file);
+    })->name('purchase-document');
 
 	Route::get('typography', function () {
 		return view('pages.typography');
