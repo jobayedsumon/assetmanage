@@ -23,8 +23,8 @@
 
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title ">Employees</h4>
-                            <p class="card-category"> Here you can manage employees</p>
+                            <h4 class="card-title ">{{ $department->name }} Employees</h4>
+                            <p class="card-category"> Here you can manage {{ $department->name }} employees</p>
                         </div>
                         <div class="card-body">
                             <div class="row">

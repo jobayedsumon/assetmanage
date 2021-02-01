@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'items', 'titlePage' => __('Item Management')])
+@extends('layouts.app', ['activePage' => 'asset-assignment', 'titlePage' => __('Asset Assignment Management')])
 
 @section('content')
 
@@ -23,13 +23,13 @@
 
                     <div class="card">
                         <div class="card-header card-header-primary">
-                            <h4 class="card-title ">{{ $category->name }} Items</h4>
-                            <p class="card-category"> Here you can manage {{ $category->name }} items</p>
+                            <h4 class="card-title ">Asset Assignment</h4>
+                            <p class="card-category"> Here you can manage previously assigned assets</p>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12 text-right">
-                                    <a href="{{ route('items.create') }}" class="btn btn-sm btn-primary">Add item</a>
+                                    <a href="{{ route('asset-assignment.create') }}" class="btn btn-sm btn-primary">New Assignment</a>
                                 </div>
                             </div>
                             <div class="table-responsive">
@@ -40,22 +40,25 @@
                                             S/L
                                         </th>
                                         <th>
+                                            Item
+                                        </th>
+                                        <th>
                                             Image
                                         </th>
                                         <th>
-                                            Name
+                                            Assigned To
                                         </th>
                                         <th>
-                                            Category
+                                            Assigned Dept.
                                         </th>
                                         <th>
-                                            Identification No
+                                            Condition
                                         </th>
                                         <th>
-                                            Cost
+                                            Status
                                         </th>
                                         <th>
-                                            Purchase Date
+                                            Knox
                                         </th>
 
                                         <th class="text-right">
@@ -64,32 +67,36 @@
                                     </tr></thead>
                                     <tbody>
 
-                                    @forelse($items as $item)
+                                    @forelse($assignments as $assignment)
                                     <tr>
                                         <td>
                                             {{ $loop->index + 1 }}
                                         </td>
                                         <td>
-                                            <img width="100px" src="{{ route('item-image', $item->image) }}" alt="">
+                                            {{ $assignment->item->name }}
                                         </td>
                                         <td>
-                                            {{ $item->name }}
+                                            <img width="100px" src="{{ route('item-image', $assignment->item->image) }}" alt="">
+                                        </td>
+
+                                        <td>
+                                            {{ $assignment->employee->name }}
                                         </td>
                                         <td>
-                                            {{ $item->category->name }}
+                                            {{ $assignment->department->name }}
                                         </td>
                                         <td>
-                                            {{ $item->identification_no }}
+                                            {{ $assignment->condition }}
                                         </td>
                                         <td>
-                                            BDT {{ $item->cost }}
+                                            {{ $assignment->status }}
                                         </td>
                                         <td>
-                                            {{ $item->purchase_date }}
+                                            {{ $assignment->knox ? 'Enabled' : 'Disabled' }}
                                         </td>
                                         <td class="td-actions text-right">
-                                            <a class="btn btn-round btn-success p-2" href="{{ route('items.show', $item->id) }}">View Details</a>
-                                            <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('items.edit', $item->id) }}" data-original-title="" title="">
+                                            <a class="btn btn-round btn-success p-2" href="{{ route('asset-assignment.show', $assignment->id) }}">View Details</a>
+                                            <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('asset-assignment.edit', $assignment->id) }}" data-original-title="" title="">
                                                 <i class="material-icons">edit</i>
                                                 <div class="ripple-container"></div>
                                             </a>

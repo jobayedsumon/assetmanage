@@ -43,10 +43,31 @@
         </div>
       </li>
 
+        <li class="nav-item{{ $activePage == 'department' ? ' active' : '' }}">
+            <a class="nav-link" href="{{ route('department.index') }}">
+                <i class="material-icons">apartment</i>
+                <p>{{ __('Department') }}</p>
+            </a>
+        </li>
+
+        {{--        <li class="nav-item{{ $activePage == 'branch' ? ' active' : '' }}">--}}
+        {{--            <a class="nav-link" href="{{ route('branch.index') }}">--}}
+        {{--                <i class="material-icons">business_center</i>--}}
+        {{--                <p>{{ __('Branch') }}</p>--}}
+        {{--            </a>--}}
+        {{--        </li>--}}
+
+        <li class="nav-item{{ $activePage == 'category' ? ' active' : '' }}">
+            <a class="nav-link" href="{{ route('category.index') }}">
+                <i class="material-icons">category</i>
+                <p>{{ __('Category') }}</p>
+            </a>
+        </li>
+
         <li class="nav-item {{ ($activePage == 'employee' || $activePage == 'employee-management') ? ' active' : '' }}">
             <a class="nav-link" data-toggle="collapse" href="#employee" aria-expanded="true">
                 <i class="material-icons">badge</i>
-                <p>{{ __('Employee') }}
+                <p>{{ __('Manage Employee') }}
                     <b class="caret"></b>
                 </p>
             </a>
@@ -59,41 +80,41 @@
                         </a>
                     </li>
                     <li class="nav-item{{ $activePage == 'employee-management' ? ' active' : '' }}">
-                        <a class="nav-link" href="{{ route('employee.index') }}">
-                            <span class="sidebar-mini"><i class="material-icons">badge</i></span>
-                            <span class="sidebar-normal"> {{ __('Employee Management') }} </span>
+                        <a class="nav-link" data-toggle="collapse" href="#employee-management" aria-expanded="true">
+                            <i class="material-icons">apartment</i>
+                            <p>{{ __('Employee Department') }}
+                                <b class="caret"></b>
+                            </p>
                         </a>
+
+                        <div class="collapse" id="employee-management">
+                            <ul class="nav">
+
+                                @forelse($departments as $department)
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('employee.department', $department->id) }}">
+                                        <span class="sidebar-mini"><i class="material-icons">apartment</i></span>
+                                        <span class="sidebar-normal">{{ $department->name }} </span>
+                                    </a>
+                                </li>
+
+                                @empty
+                                @endforelse
+                            </ul>
+                        </div>
                     </li>
                 </ul>
             </div>
         </li>
 
-        <li class="nav-item{{ $activePage == 'department' ? ' active' : '' }}">
-            <a class="nav-link" href="{{ route('department.index') }}">
-                <i class="material-icons">apartment</i>
-                <p>{{ __('Department') }}</p>
-            </a>
-        </li>
 
-{{--        <li class="nav-item{{ $activePage == 'branch' ? ' active' : '' }}">--}}
-{{--            <a class="nav-link" href="{{ route('branch.index') }}">--}}
-{{--                <i class="material-icons">business_center</i>--}}
-{{--                <p>{{ __('Branch') }}</p>--}}
-{{--            </a>--}}
-{{--        </li>--}}
-
-        <li class="nav-item{{ $activePage == 'category' ? ' active' : '' }}">
-            <a class="nav-link" href="{{ route('category.index') }}">
-                <i class="material-icons">category</i>
-                <p>{{ __('Category') }}</p>
-            </a>
-        </li>
 
 
         <li class="nav-item {{ ($activePage == 'items' || $activePage == 'item-management') ? ' active' : '' }}">
             <a class="nav-link" data-toggle="collapse" href="#items" aria-expanded="true">
                 <i class="material-icons">print</i>
-                <p>{{ __('Items') }}
+                <p>{{ __('Item Management') }}
                     <b class="caret"></b>
                 </p>
             </a>
@@ -105,11 +126,29 @@
                             <span class="sidebar-normal">{{ __('Create Item') }} </span>
                         </a>
                     </li>
-                    <li class="nav-item{{ $activePage == 'item-management' ? ' active' : '' }}">
-                        <a class="nav-link" href="{{ route('items.index') }}">
-                            <span class="sidebar-mini"><i class="material-icons">print</i></span>
-                            <span class="sidebar-normal">{{ __('Item Management') }}</span>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="collapse" href="#item-management" aria-expanded="true">
+                            <i class="material-icons">category</i>
+                            <p>{{ __('Item Category') }}
+                                <b class="caret"></b>
+                            </p>
                         </a>
+                        <div class="collapse" id="item-management">
+                            <ul class="nav">
+
+                                @forelse($categories as $category)
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('items.category', $category->id) }}">
+                                            <span class="sidebar-mini"><i class="material-icons">category</i></span>
+                                            <span class="sidebar-normal">{{ $category->name }} </span>
+                                        </a>
+                                    </li>
+
+                                @empty
+                                @endforelse
+                            </ul>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -118,13 +157,13 @@
         <li class="nav-item {{ ($activePage == 'asset-assignment' ? ' active' : '') }}">
             <a class="nav-link" data-toggle="collapse" href="#asset-assignment" aria-expanded="true">
                 <i class="material-icons">assignment</i>
-                <p>{{ __('Asset Assignment') }}
+                <p>{{ __('Asset Management') }}
                     <b class="caret"></b>
                 </p>
             </a>
             <div class="collapse" id="asset-assignment">
                 <ul class="nav">
-                    <li class="nav-item{{ $activePage == 'asset-assignment' ? ' active' : '' }}">
+                    <li class="nav-item{{ $activePage == 'new-assignment' ? ' active' : '' }}">
                         <a class="nav-link" href="{{ route('asset-assignment.create') }}">
                             <span class="sidebar-mini"><i class="material-icons">assignment_turned_in</i></span>
                             <span class="sidebar-normal">{{ __('New Assign') }} </span>
@@ -136,10 +175,16 @@
                             <span class="sidebar-normal">{{ __('Manage Assignment') }}</span>
                         </a>
                     </li>
-                    <li class="nav-item{{ $activePage == 'asset-assignment' ? ' active' : '' }}">
-                        <a class="nav-link" href="{{ route('asset-assignment.index') }}">
+                    <li class="nav-item{{ $activePage == 'asset-transfer' ? ' active' : '' }}">
+                        <a class="nav-link" href="{{ route('asset-transfer.index') }}">
                             <span class="sidebar-mini"><i class="material-icons">assignment_return</i></span>
                             <span class="sidebar-normal">{{ __('Transfer Asset') }}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item{{ $activePage == 'transfer-history' ? ' active' : '' }}">
+                        <a class="nav-link" href="{{ route('asset-transfer.index') }}">
+                            <span class="sidebar-mini"><i class="material-icons">history</i></span>
+                            <span class="sidebar-normal">{{ __('Transfer History') }}</span>
                         </a>
                     </li>
                 </ul>

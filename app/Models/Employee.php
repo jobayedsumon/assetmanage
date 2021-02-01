@@ -15,4 +15,9 @@ class Employee extends Model
     {
         return $this->belongsTo(Department::class);
     }
+
+    public function items()
+    {
+        return $this->belongsToMany(Item::class, AssetAssignment::class)->withTimestamps();
+    }
 }

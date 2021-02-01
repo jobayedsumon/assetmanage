@@ -7,8 +7,8 @@
       &copy;
       <script>
         document.write(new Date().getFullYear())
-      </script>, made with <i class="material-icons">favorite</i> by
-      <a href="#" target="_blank">MIS Department</a> for a better assets and HR management.
+      </script>
+      <a href="#" target="_blank">MIS Department</a>
     </div>
   </div>
 </footer>

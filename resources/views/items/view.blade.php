@@ -127,6 +127,93 @@
 
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title">Asset Owner</h4>
+                            <p class="card-category font-weight-bold"> {{ $item->name }} belongs to</p>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead class=" text-primary">
+                                    <tr>
+                                        <th>
+                                            S/L
+                                        </th>
+
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th>
+                                            Department
+                                        </th>
+                                        <th>
+                                            Phone Number
+                                        </th>
+                                        <th>
+                                            Email
+                                        </th>
+                                        <th>
+                                            NID No
+                                        </th>
+
+                                        <th>
+                                            Address
+                                        </th>
+
+                                        <th class="text-right">
+                                            Actions
+                                        </th>
+                                    </tr></thead>
+                                    <tbody>
+
+                                    @forelse($item->employees as $employee)
+                                        <tr>
+                                            <td>
+                                                {{ $loop->index + 1 }}
+                                            </td>
+
+                                            <td>
+                                                {{ $employee->name }}
+                                            </td>
+                                            <td>
+                                                {{ $employee->department->name }}
+                                            </td>
+                                            <td>
+                                                {{ $employee->phone_number }}
+                                            </td>
+                                            <td>
+                                                {{ $employee->email }}
+                                            </td>
+                                            <td>
+                                                {{ $employee->nid }}
+                                            </td>
+                                            <td>
+                                                {{ $employee->address }}
+                                            </td>
+                                            <td class="td-actions text-right">
+                                                <a class="btn btn-round btn-success p-2" href="{{ route('employee.show', $employee->id) }}">View Details</a>
+                                                <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('employee.edit', $employee->id) }}" data-original-title="" title="">
+                                                    <i class="material-icons">edit</i>
+                                                    <div class="ripple-container"></div>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                    @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
 

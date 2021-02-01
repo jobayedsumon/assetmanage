@@ -196,3 +196,10 @@
     border-color: #468847;
 }
 
+.sidebar .nav .caret {
+    right: 0 !important;
+}
+
+.copyright {
+    font-size: 12px;
+}

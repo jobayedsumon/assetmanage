@@ -9,12 +9,6 @@ use Illuminate\Http\Request;
 class EmployeeController extends Controller
 {
     //
-    public function index()
-    {
-        $employees = Employee::all();
-
-        return view('employee.index', compact('employees'));
-    }
 
     public function show($id)
     {
@@ -29,6 +23,15 @@ class EmployeeController extends Controller
         $departments = Department::all();
 
         return view('employee.edit', compact('employee', 'departments'));
+    }
+
+    public function department_employees($id)
+    {
+        $department = Department::findOrFail($id);
+
+        $employees = $department->employees;
+
+        return view('employee.index', compact('employees', 'department'));
     }
 
     public function create()
@@ -46,7 +49,7 @@ class EmployeeController extends Controller
             'phone_number' => 'required',
         ]);
 
-        Employee::create([
+        $employee = Employee::create([
             'department_id' => $request->department,
             'name' => $request->name,
             'phone_number' => $request->phone_number,
@@ -56,7 +59,7 @@ class EmployeeController extends Controller
             'joining_date' => $request->joining_date,
         ]);
 
-        return redirect(route('employee.index'))->with('status', 'Employee added successfully');
+        return redirect(route('employee.department', $employee->department_id))->with('status', 'Employee added successfully');
     }
 
     public function update(Request $request, $id)
@@ -80,6 +83,6 @@ class EmployeeController extends Controller
             'joining_date' => $request->joining_date,
         ]);
 
-        return redirect(route('employee.index'))->with('status', 'Employee updated successfully');
+        return redirect(route('employee.department', $employee->department_id))->with('status', 'Employee updated successfully');
     }
 }

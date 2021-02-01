@@ -15,4 +15,9 @@ class Department extends Model
     {
         return $this->hasMany(Employee::class);
     }
+
+    public function items()
+    {
+        return $this->belongsToMany(Item::class, AssetAssignment::class);
+    }
 }

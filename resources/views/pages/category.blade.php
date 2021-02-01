@@ -87,13 +87,11 @@
                         {{ $category->name }}
                     </td>
                     <td>
-                      1
+                        {{ $category->items->count() }}
                     </td>
-                    <td>
-                      2
-                    </td>
+
                     <td class="text-primary">
-                      $36,738
+                      BDT {{ $category->items()->sum('cost') }}
                     </td>
                       <td>
                           <button class="btn btn-round btn-success" data-toggle="modal" data-target="#editModal"

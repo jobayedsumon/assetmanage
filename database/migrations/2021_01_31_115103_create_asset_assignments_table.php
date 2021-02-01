@@ -15,12 +15,15 @@ class CreateAssetAssignmentsTable extends Migration
     {
         Schema::create('asset_assignments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('department_id')->constrained();
             $table->foreignId('employee_id')->constrained();
             $table->foreignId('item_id')->constrained();
-            $table->integer('quantity');
-            $table->string('condition');
+            $table->integer('quantity')->nullable();
+            $table->string('condition')->nullable();
             $table->date('assigned_date');
-            $table->text('remarks');
+            $table->string('status')->nullable();
+            $table->boolean('knox')->nullable();
+            $table->text('remarks')->nullable();
             $table->timestamps();
         });
     }
