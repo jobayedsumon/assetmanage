@@ -182,7 +182,7 @@
                         </a>
                     </li>
                     <li class="nav-item{{ $activePage == 'transfer-history' ? ' active' : '' }}">
-                        <a class="nav-link" href="{{ route('asset-transfer.index') }}">
+                        <a class="nav-link" href="{{ route('asset-transfer.history') }}">
                             <span class="sidebar-mini"><i class="material-icons">history</i></span>
                             <span class="sidebar-normal">{{ __('Transfer History') }}</span>
                         </a>

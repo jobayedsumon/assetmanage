@@ -37,6 +37,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('employee/department/{id}', '\App\Http\Controllers\EmployeeController@department_employees')->name('employee.department');
     Route::resource('employee', \App\Http\Controllers\EmployeeController::class);
     Route::resource('asset-assignment', \App\Http\Controllers\AssetAssignmentController::class);
+    Route::get('asset-transfer/history', '\App\Http\Controllers\TransferController@history')->name('asset-transfer.history');
+    Route::get('asset-transfer/transfer-history/{id}', '\App\Http\Controllers\TransferController@transfer_history')
+        ->name('asset-transfer.transfer-history');
     Route::resource('asset-transfer', \App\Http\Controllers\TransferController::class);
     Route::post('/get-department-employee', '\App\Http\Controllers\AssetAssignmentController@get_department_employee');
     Route::post('/get-category-item', '\App\Http\Controllers\AssetAssignmentController@get_category_item');

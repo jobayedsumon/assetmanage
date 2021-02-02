@@ -20,6 +20,20 @@ class TransferController extends Controller
         return view('asset-transfer.index', compact('assignments'));
     }
 
+    public function history()
+    {
+        $assignments = AssetAssignment::latest()->get();
+
+        return view('asset-transfer.history', compact('assignments'));
+    }
+
+    public function transfer_history($id)
+    {
+        $assignment = AssetAssignment::findOrFail($id);
+
+        return view('asset-transfer.transfer_history', compact('assignment'));
+    }
+
     public function edit($id)
     {
         $assignment = AssetAssignment::findOrFail($id);
@@ -57,9 +71,11 @@ class TransferController extends Controller
             'remarks' => $request->remarks
         ]);
 
-        $employee->items()->attach([
+
+        $previous_employee->items()->sync([
             $item->id => [
                 'department_id' => $request->department,
+                'employee_id' => $employee->id,
             ]
         ]);
 

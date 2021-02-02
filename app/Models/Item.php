@@ -19,4 +19,9 @@ class Item extends Model
     {
         return $this->belongsToMany(Employee::class, AssetAssignment::class);
     }
+
+    public function transfers()
+    {
+        return $this->hasMany(Transfer::class)->orderBy('transferred_date', 'ASC')->orderBy('created_at', 'ASC');
+    }
 }

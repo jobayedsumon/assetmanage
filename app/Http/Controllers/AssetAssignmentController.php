@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Department;
 use App\Models\Employee;
 use App\Models\Item;
+use App\Models\Transfer;
 use Illuminate\Http\Request;
 
 class AssetAssignmentController extends Controller
@@ -80,6 +81,14 @@ class AssetAssignmentController extends Controller
                 'knox' => !!$request->knox,
                 'remarks' => $request->remarks
             ]
+        ]);
+
+        Transfer::create([
+            'item_id' => $item->id,
+            'transferred_from' => 0,
+            'transferred_to' => $employee->id,
+            'transferred_date' => $request->assigned_date,
+            'remarks' => $request->remarks
         ]);
 
         return redirect()->back()->with('status', $item->name . ' assigned to ' . $employee->name);
