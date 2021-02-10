@@ -191,6 +191,32 @@
             </div>
         </li>
 
+        <li class="nav-item {{ ($activePage == 'servicing' ? ' active' : '') }}">
+            <a class="nav-link" data-toggle="collapse" href="#servicing" aria-expanded="true">
+                <i class="material-icons">home_repair_service</i>
+                <p>{{ __('Asset Servicing') }}
+                    <b class="caret"></b>
+                </p>
+            </a>
+            <div class="collapse" id="servicing">
+                <ul class="nav">
+                    <li class="nav-item{{ $activePage == 'new-servicing' ? ' active' : '' }}">
+                        <a class="nav-link" href="{{ route('servicing.create') }}">
+                            <span class="sidebar-mini"><i class="material-icons">create_new_folder</i></span>
+                            <span class="sidebar-normal">{{ __('Send for Servicing') }} </span>
+                        </a>
+                    </li>
+                    <li class="nav-item{{ $activePage == 'servicing' ? ' active' : '' }}">
+                        <a class="nav-link" href="{{ route('servicing.index') }}">
+                            <span class="sidebar-mini"><i class="material-icons">history</i></span>
+                            <span class="sidebar-normal">{{ __('Servicing History') }}</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </li>
+
 
 
 {{--      <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">--}}

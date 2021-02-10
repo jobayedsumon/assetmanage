@@ -32,6 +32,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('department', \App\Http\Controllers\DepartmentController::class);
     Route::resource('branch', \App\Http\Controllers\BranchController::class);
     Route::resource('category', \App\Http\Controllers\CategoryController::class);
+    Route::get('servicing/receive/{id}', '\App\Http\Controllers\ServicingController@receive_form')->name('servicing.receive');
+    Route::post('servicing/receive/{id}', '\App\Http\Controllers\ServicingController@item_receive')->name('servicing.receive');
+    Route::resource('servicing', \App\Http\Controllers\ServicingController::class);
     Route::get('items/category/{id}', '\App\Http\Controllers\ItemController@category_items')->name('items.category');
     Route::resource('items', \App\Http\Controllers\ItemController::class);
     Route::get('employee/department/{id}', '\App\Http\Controllers\EmployeeController@department_employees')->name('employee.department');
@@ -51,10 +54,16 @@ Route::group(['middleware' => 'auth'], function () {
         return response()->file($file);
     })->name('item-image');
 
+
     Route::get('purchase-document/{document}', function($document) {
         $file = storage_path('app/purchase-document/'.$document);
         return response()->file($file);
     })->name('purchase-document');
+
+    Route::get('servicing-document/{document}', function($document) {
+        $file = storage_path('app/servicing-document/'.$document);
+        return response()->file($file);
+    })->name('servicing-document');
 
 	Route::get('typography', function () {
 		return view('pages.typography');

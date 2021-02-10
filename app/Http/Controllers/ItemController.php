@@ -59,11 +59,15 @@ class ItemController extends Controller
         if ($request->hasFile('image')) {
             $image = now().$request->file('image')->getClientOriginalName();
             $request->file('image')->storeAs('item-image', $image);
+        } else {
+            $image = null;
         }
 
         if ($request->hasFile('document')) {
             $document = now().$request->file('document')->getClientOriginalName();
             $request->file('document')->storeAs('purchase-document', $document);
+        } else {
+            $document = null;
         }
 
         Item::create([

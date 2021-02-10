@@ -8,17 +8,17 @@
           <div class="card card-stats">
             <div class="card-header card-header-warning card-header-icon">
               <div class="card-icon">
-                <i class="material-icons">content_copy</i>
+                <i class="material-icons">people</i>
               </div>
-              <p class="card-category">Used Space</p>
-              <h3 class="card-title">49/50
-                <small>GB</small>
+              <p class="card-category">Total Employees</p>
+              <h3 class="card-title">{{ $employees->count() }}
+
               </h3>
             </div>
             <div class="card-footer">
               <div class="stats">
-                <i class="material-icons text-danger">warning</i>
-                <a href="#pablo">Get More Space...</a>
+                <i class="material-icons text-danger">people</i>
+                <a href="#pablo">See Employees</a>
               </div>
             </div>
           </div>
@@ -27,50 +27,52 @@
           <div class="card card-stats">
             <div class="card-header card-header-success card-header-icon">
               <div class="card-icon">
-                <i class="material-icons">store</i>
+                <i class="material-icons">printer</i>
               </div>
-              <p class="card-category">Revenue</p>
-              <h3 class="card-title">$34,245</h3>
+              <p class="card-category">Total Items</p>
+              <h3 class="card-title">{{ $items->count() }}</h3>
             </div>
             <div class="card-footer">
               <div class="stats">
-                <i class="material-icons">date_range</i> Last 24 Hours
+                <i class="material-icons">printer</i> See Items
               </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card card-stats">
-            <div class="card-header card-header-danger card-header-icon">
-              <div class="card-icon">
-                <i class="material-icons">info_outline</i>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-danger card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">money</i>
+                      </div>
+                      <p class="card-category">Total Value</p>
+                      <h3 class="card-title">BDT {{ $items->sum('cost') }}</h3>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons">update</i> Just Updated
+                      </div>
+                  </div>
               </div>
-              <p class="card-category">Fixed Issues</p>
-              <h3 class="card-title">75</h3>
-            </div>
-            <div class="card-footer">
-              <div class="stats">
-                <i class="material-icons">local_offer</i> Tracked from Github
-              </div>
-            </div>
           </div>
-        </div>
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="card card-stats">
             <div class="card-header card-header-info card-header-icon">
-              <div class="card-icon">
-                <i class="fa fa-twitter"></i>
-              </div>
-              <p class="card-category">Followers</p>
-              <h3 class="card-title">+245</h3>
+                <div class="card-icon">
+                    <i class="material-icons">assignments</i>
+                </div>
+
+              <p class="card-category">Total Assignments</p>
+              <h3 class="card-title">{{ $assignments->count() }}</h3>
             </div>
             <div class="card-footer">
               <div class="stats">
-                <i class="material-icons">update</i> Just Updated
+                <i class="material-icons">assignments</i> Tracked from Github
               </div>
             </div>
           </div>
         </div>
+
       </div>
 {{--      <div class="row">--}}
 {{--        <div class="col-md-4">--}}

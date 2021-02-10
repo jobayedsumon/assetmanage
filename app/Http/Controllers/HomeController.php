@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssetAssignment;
+use App\Models\Employee;
+use App\Models\Item;
+use App\Models\Transfer;
+
 class HomeController extends Controller
 {
     /**
@@ -14,13 +19,14 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\View\View
-     */
+
     public function index()
     {
-        return view('dashboard');
+        $employees = Employee::all();
+        $items = Item::all();
+        $assignments = AssetAssignment::all();
+        $transfers = Transfer::all();
+
+        return view('dashboard', compact('employees', 'items', 'assignments', 'transfers'));
     }
 }
